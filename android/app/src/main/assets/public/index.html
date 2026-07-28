@@ -457,7 +457,7 @@
       <div class="btn-row">
         <button class="btn" id="p-add"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg> Teilnehmer hinzufügen</button>
         <button class="btn secondary" id="p-export"><svg class="ic" aria-hidden="true"><use href="#i-export"/></svg> Export <span class="premium-star" id="p-export-star">💎</span></button>
-        <button class="btn secondary" id="p-print"><svg class="ic" aria-hidden="true"><use href="#i-print"/></svg> Drucken <span class="premium-star" id="p-print-star">💎</span></button>
+        <button class="btn secondary" id="p-print"><svg class="ic" aria-hidden="true"><use href="#i-print"/></svg> <span id="p-print-label">Drucken</span> <span class="premium-star" id="p-print-star">💎</span></button>
         <button class="btn danger small" id="p-clear" style="margin-left:auto">Liste leeren</button>
       </div>
       <p class="muted on-bg" id="p-limit-info"></p>
@@ -723,6 +723,7 @@
           ohne Gewähr – maßgeblich ist stets die offizielle Auswertung durch die Überprüfungsleitung.</p>
         <div id="ads-status" class="muted" style="display:none;font-size:.76rem"></div>
         <div id="buy-status" class="muted" style="display:none;font-size:.76rem"></div>
+        <div id="export-status" class="muted" style="display:none;font-size:.76rem"></div>
         <div class="btn-row"><button class="btn secondary small" id="ads-privacy-btn" style="display:none">Werbe-Einstellungen ändern</button></div>
         <p class="muted"><a href="datenschutz.html">Datenschutzerklärung &amp; Impressum</a></p>
       </div>
@@ -764,7 +765,7 @@
   <div class="modal" role="dialog" aria-modal="true" aria-label="Ergebnisliste exportieren">
     <button class="iconbtn x" data-close="modal-export" aria-label="Schließen"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></button>
     <h2>Ergebnisliste exportieren</h2>
-    <p class="muted">Wähle das Format – die Datei wird lokal gespeichert (in der App zum Speichern/Teilen).</p>
+    <p class="muted" id="export-hint">Wähle das Format – die Datei wird lokal gespeichert (in der App zum Speichern/Teilen).</p>
     <div class="btn-row" style="flex-direction:column;align-items:stretch">
       <button class="btn" id="exp-pdf"><svg class="ic" aria-hidden="true"><use href="#i-export"/></svg> Export als PDF</button>
       <button class="btn secondary" id="exp-img"><svg class="ic" aria-hidden="true"><use href="#i-export"/></svg> Export als Bild (PNG)</button>
@@ -960,7 +961,7 @@ const SGT = {
 
 /* ---------- Hilfsfunktionen ---------- */
 const $ = id => document.getElementById(id);
-const APP_VERSION = "1.0.0";
+const APP_VERSION = "1.0.1";
 function parseNum(v){
   if (v == null) return null;
   const n = parseFloat(String(v).trim().replace(",", "."));
@@ -1183,41 +1184,94 @@ const Billing = {
   }
 };
 
-/* ---------- Native Brücke (Capacitor) mit Feature-Detection ----------
+/* ---------- Native Brücke (Capacitor) ---------------------------------
    Im Browser: a.download bzw. window.print().
-   In der späteren Android-App (Capacitor): Filesystem+Share bzw. Printer-Plugin.
-   Die nativen Zweige werden in der Capacitor-Phase angebunden.            */
+   In der Android-App funktioniert beides NICHT (die WebView ignoriert
+   Blob-Downloads und kennt keinen Druckdialog). Dort schreiben wir die Datei
+   deshalb über das Filesystem-Plugin in den Cache und öffnen anschließend das
+   System-Teilen-Menü über das Share-Plugin – von dort lässt sich die Liste
+   speichern, versenden oder aus einer PDF-App heraus drucken.
+   Plugins werden ausschließlich über window.Capacitor.Plugins.<Name>
+   angesprochen (kein Bundler, also kein registerPlugin).                 */
 const Bridge = {
+  statusLog: [],
+  log(msg, isErr){
+    (isErr ? console.error : console.log)("[Export] " + msg);
+    this.statusLog.push(msg);
+    if (this.statusLog.length > 6) this.statusLog.shift();
+    const el = document.getElementById("export-status");
+    if (el) el.textContent = "Export-Status: " + this.statusLog.join(" → ");
+  },
   isNative(){
     try { return !!(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform()); }
     catch(e){ return false; }
   },
-  async saveTextFile(filename, text, mime){
-    await this.saveBlob(filename, new Blob([text], { type: mime + ";charset=utf-8" }));
+  plugin(name){
+    try { return (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins[name]) || null; }
+    catch(e){ return null; }
   },
-  async saveBlob(filename, blob){
-    /* In der App (Capacitor): über Filesystem + Share speichern/teilen. */
-    if (this.isNative() && window.SgtNative && window.SgtNative.saveBase64){
-      try {
-        const b64 = await new Promise((res, rej) => {
-          const fr = new FileReader();
-          fr.onload = () => res(String(fr.result).split(",")[1] || "");
-          fr.onerror = rej; fr.readAsDataURL(blob);
-        });
-        await window.SgtNative.saveBase64(filename, b64, blob.type); return;
-      } catch(e){ /* Fallback unten */ }
+  blobToBase64(blob){
+    return new Promise((res, rej) => {
+      const fr = new FileReader();
+      fr.onload = () => res(String(fr.result).split(",")[1] || "");
+      fr.onerror = () => rej(new Error("Datei konnte nicht gelesen werden"));
+      fr.readAsDataURL(blob);
+    });
+  },
+  async saveTextFile(filename, text, mime){
+    return await this.saveBlob(filename, new Blob([text], { type: mime + ";charset=utf-8" }));
+  },
+  async saveBlob(filename, blob, title){
+    if (this.isNative()) return await this.saveNative(filename, blob, title);
+    try {
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = filename;
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+      this.log("Datei im Browser gespeichert");
+      return true;
+    } catch(e){
+      this.log("Fehler im Browser: " + (e && e.message ? e.message : e), true);
+      alert("Die Datei konnte nicht gespeichert werden.");
+      return false;
     }
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = filename;
-    document.body.appendChild(a); a.click(); a.remove();
-    setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+  },
+  /* Android: Datei in den App-Cache schreiben und das Teilen-Menü öffnen. */
+  async saveNative(filename, blob, title){
+    const Fs = this.plugin("Filesystem"), Sh = this.plugin("Share");
+    if (!Fs || !Sh){
+      this.log("Plugin fehlt: " + (!Fs ? "Filesystem" : "Share"), true);
+      alert("Der Export ist auf diesem Gerät nicht verfügbar (Modul fehlt).");
+      return false;
+    }
+    try {
+      const data = await this.blobToBase64(blob);
+      await Fs.writeFile({ path: filename, data, directory: "CACHE", recursive: true });
+      const res = await Fs.getUri({ path: filename, directory: "CACHE" });
+      this.log("Datei erstellt");
+      await Sh.share({ title: title || filename, files: [res && res.uri] });
+      this.log("Teilen-Menü geöffnet");
+      return true;
+    } catch(e){
+      const msg = e && e.message ? e.message : String(e);
+      /* Bricht die Testperson das Teilen-Menü ab, ist das kein Fehler. */
+      if (/cancel|abort/i.test(msg)){ this.log("Teilen abgebrochen"); return true; }
+      this.log("Fehler: " + msg, true);
+      alert("Die Datei konnte nicht erstellt werden.\n\n" + msg);
+      return false;
+    }
   },
   async print(){
-    if (this.isNative() && window.SgtNative && window.SgtNative.print){
-      try { await window.SgtNative.print(); return; } catch(e){ /* Fallback unten */ }
+    if (this.isNative()){
+      /* Kein Druckdialog in der WebView: Ergebnisliste als PDF erzeugen und
+         über das Teilen-Menü ausgeben (dort steht u. a. Drucken bereit). */
+      const blob = buildListPdfBlob();
+      if (!blob) return false;
+      return await this.saveBlob("sgt-ergebnisliste-" + dateStamp() + ".pdf", blob, "Ergebnisliste drucken");
     }
     window.print();
+    return true;
   }
 };
 
@@ -1709,7 +1763,7 @@ function exportImage(){
   ctx.textBaseline = "alphabetic";
   ctx.fillStyle = "#5b6152"; ctx.font = "12px system-ui, Arial, sans-serif";
   ctx.fillText("Erstellt mit dem SGT Rechner – Soldaten-Grundfitness-Tool", padX, y + 26);
-  cv.toBlob(blob => { Bridge.saveBlob("sgt-ergebnisliste-" + dateStamp() + ".png", blob); }, "image/png");
+  cv.toBlob(blob => { Bridge.saveBlob("sgt-ergebnisliste-" + dateStamp() + ".png", blob, "Ergebnisliste als Bild"); }, "image/png");
   closeModal("modal-export");
 }
 
@@ -1746,15 +1800,22 @@ function buildPdf(lines){
   return pdf;
 }
 function strToBlob(s, mime){ const b = new Uint8Array(s.length); for (let i = 0; i < s.length; i++) b[i] = s.charCodeAt(i) & 0xff; return new Blob([b], { type: mime }); }
-function exportPdf(){
+/* Baut die Ergebnisliste als PDF-Blob; null, wenn die Liste leer ist.
+   Wird sowohl vom PDF-Export als auch vom Drucken in der App genutzt. */
+function buildListPdfBlob(){
   const { head, rows } = exportRows();
-  if (!rows.length){ alert("Die Liste ist leer."); return; }
+  if (!rows.length){ alert("Die Liste ist leer."); return null; }
   const w = colWidths(head, rows);
   const fmt = cells => cells.map((c,i) => c.padEnd(w[i])).join("  ");
   const lines = ["SGT Rechner - Ergebnisliste (Soldaten-Grundfitness-Tool)", "Erstellt: " + dateStr(), "", fmt(head), w.map(x => "-".repeat(x)).join("  ")];
   rows.forEach(r => lines.push(fmt(r)));
   lines.push(""); lines.push("Erstellt mit dem SGT Rechner – Soldaten-Grundfitness-Tool");
-  Bridge.saveBlob("sgt-ergebnisliste-" + dateStamp() + ".pdf", strToBlob(buildPdf(lines), "application/pdf"));
+  return strToBlob(buildPdf(lines), "application/pdf");
+}
+function exportPdf(){
+  const blob = buildListPdfBlob();
+  if (!blob) return;
+  Bridge.saveBlob("sgt-ergebnisliste-" + dateStamp() + ".pdf", blob, "Ergebnisliste als PDF");
   closeModal("modal-export");
 }
 
@@ -1767,8 +1828,12 @@ $("exp-pdf").addEventListener("click", exportPdf);
 $("exp-img").addEventListener("click", exportImage);
 $("exp-txt").addEventListener("click", exportText);
 
-$("p-print").addEventListener("click", () => {
+$("p-print").addEventListener("click", async () => {
   if (!Edition.isPremium()){ openPremium(); return; }
+  if (!participants().length){ alert("Die Liste ist leer."); return; }
+  /* In der App gibt es keinen Druckdialog – dort erzeugt Bridge.print()
+     die PDF-Fassung und öffnet das Teilen-Menü. */
+  if (Bridge.isNative()){ await Bridge.print(); return; }
   $("view-pruefer").classList.add("print-me");
   Bridge.print();
   setTimeout(() => $("view-pruefer").classList.remove("print-me"), 1000);
@@ -1830,6 +1895,8 @@ function renderSettings(){
   if (adsEl && Ads.statusLog.length) adsEl.textContent = "Werbestatus: " + Ads.statusLog.join(" → ");
   const buyEl = $("buy-status");
   if (buyEl && Billing.statusLog.length) buyEl.textContent = "Kauf-Status: " + Billing.statusLog.join(" → ");
+  const expEl = $("export-status");
+  if (expEl && Bridge.statusLog.length) expEl.textContent = "Export-Status: " + Bridge.statusLog.join(" → ");
   $("s-edition-status").innerHTML = Edition.isPremium()
     ? "💎 <b>Premium</b> ist aktiv: keine Werbung, unbegrenzte Teilnehmer, Export (PDF/Bild/Text), Drucken."
     : "Aktuell: <b>Freie Version</b> (mit Werbung, max. " + Edition.FREE_LIMIT + " Teilnehmer im Prüfermodus).";
@@ -1839,7 +1906,7 @@ $("btn-settings").addEventListener("click", () => { renderSettings(); openModal(
 /* Versteckte Diagnose: 5× auf die Versionsnummer tippen blendet Werbe-/Kauf-Status ein */
 let dbgTaps = 0;
 $("s-version").addEventListener("click", () => {
-  if (++dbgTaps >= 5){ $("ads-status").style.display = ""; $("buy-status").style.display = ""; renderSettings(); }
+  if (++dbgTaps >= 5){ $("ads-status").style.display = ""; $("buy-status").style.display = ""; $("export-status").style.display = ""; renderSettings(); }
 });
 $("foot-sources").addEventListener("click", e => { e.preventDefault(); renderSettings(); openModal("modal-settings"); });
 
@@ -1902,6 +1969,11 @@ applyTheme();
 Edition.apply();
 Ads.sync();
 if (Bridge.isNative()){
+  /* In der App führt "Drucken" über das Teilen-Menü (kein WebView-Druckdialog). */
+  const pl = $("p-print-label");
+  if (pl) pl.textContent = "Drucken / Teilen";
+  const eh = $("export-hint");
+  if (eh) eh.textContent = "Wähle das Format – anschließend öffnet sich das Teilen-Menü, über das du die Datei speichern, versenden oder drucken kannst.";
   document.addEventListener("deviceready", () => Billing.init(), { once: true });
   /* Fallback, falls deviceready bereits gefeuert hat: */
   setTimeout(() => Billing.init(), 3000);
