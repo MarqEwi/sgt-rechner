@@ -1,7 +1,7 @@
 {
-  "name": "PFT Tool – Physical Fitness Test",
-  "short_name": "PFT Tool",
-  "description": "Punkterechner für den Physical Fitness Test (PFT) der Bundeswehr: Pendellauf, Sit-ups, Standweitsprung, Liegestütz und 12-Minuten-Lauf eingeben, Punkte berechnen.",
+  "name": "SGT Rechner – Soldaten-Grundfitness-Tool",
+  "short_name": "SGT Rechner",
+  "description": "Zeitrechner für das Soldaten-Grundfitness-Tool (SGT) der Bundeswehr: Zeiten der vier Aufgaben eingeben und die Ampel-Kategorie Grün, Gelb oder Rot ermitteln.",
   "lang": "de",
   "start_url": "./",
   "scope": "./",
