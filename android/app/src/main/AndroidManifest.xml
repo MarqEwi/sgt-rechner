@@ -23,13 +23,11 @@
 
         </activity>
 
-        <!-- ACHTUNG: Googles offizielle TEST-App-ID. Sobald die neue AdMob-App
-             "SGT Rechner" im MERCwerk-Konto angelegt ist, hier durch die echte
-             App-ID (ca-app-pub-…~…) ersetzen. Fehlt dieser Eintrag komplett,
-             stürzt die App beim Start ab. -->
+        <!-- Echte AdMob-App-ID der SGT-Rechner-App (MERCwerk-Konto).
+             Fehlt dieser Eintrag, stürzt die App beim Start ab. -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713" />
+            android:value="ca-app-pub-7311552668399418~6376083493" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
