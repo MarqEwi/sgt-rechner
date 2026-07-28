@@ -46,11 +46,31 @@ jeder Block ist unabhängig abhakbar.
 
 ## 4. Einmalkauf-Produkt anlegen
 
-1. Play Console → deine App → **Monetarisieren → Produkte → In-App-Produkte**
-2. **Produkt erstellen** · Produkt-ID: `premium_unlock`
-3. Name: „Premium freischalten“ · Typ: einmaliger Kauf (nicht Abo) ·
-   Kategorie „Digitale Inhalte“
-4. Kaufoption anlegen mit ID `premium-unlock` · Preis **2,99 €** → aktivieren
+Play Console → deine App → **Monetarisieren → Produkte → In-App-Produkte** →
+**Produkt erstellen**.
+
+**Schritt 1 – Produktdetails:**
+
+| Feld | Wert |
+|---|---|
+| Produkt-ID | `premium_unlock` (muss exakt so lauten – steht so im Code) |
+| Tags | leer lassen |
+| Name (max. 55) | `Premium freischalten` |
+| Beschreibung (max. 200) | `Entfernt die Werbung, hebt das Limit im Prüfermodus auf und schaltet Export und Druck der Ergebnisliste frei. Einmaliger Kauf, kein Abo.` |
+| Symbol | `docs/store-grafiken/produktsymbol-premium-512.png` (optional; enthält bewusst keinen Text und kein Branding – das App-Icon ist hier nicht zulässig) |
+| Produktsteuerkategorie | Voreinstellung **Verkäufe digitaler Apps** beibehalten |
+| Altersfreigabe | leer lassen (erbt die Einstufung der App) |
+| Beschränkungen des Zahlungsortes | unverändert lassen |
+
+**Schritt 2 – Verfügbarkeit und Preisgestaltung:**
+
+1. Kaufoption anlegen mit der ID `premium-unlock`
+2. Preis **2,99 €** setzen (Google rechnet die übrigen Währungen automatisch um)
+3. Produkt und Kaufoption **aktivieren**
+
+Wichtig: Die Produkt-ID `premium_unlock` steht so in `index.html`
+(`Billing.PRODUCT`). Ein Tippfehler führt dazu, dass der Kauf-Knopf in der App
+meldet, der Kauf sei nicht verfügbar.
 
 ## 5. Signieren & hochladen (Android Studio) – ausführlich
 
