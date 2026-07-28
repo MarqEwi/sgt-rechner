@@ -1,6 +1,6 @@
 {
-  "appId": "de.mercwerk.pfttool",
-  "appName": "PFT Tool",
+  "appId": "de.mercwerk.sgtrechner",
+  "appName": "SGT Rechner",
   "webDir": "www",
   "server": {
     "androidScheme": "https"

@@ -1,4 +1,4 @@
-package de.mercwerk.pfttool;
+package de.mercwerk.sgtrechner;
 
 import com.getcapacitor.BridgeActivity;
 
