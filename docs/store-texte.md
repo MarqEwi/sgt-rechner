@@ -5,16 +5,15 @@ bewusst mit anderem Einstieg, anderer Gliederung und anderem Wortlaut
 geschrieben, damit der Play-Review sie nicht als „wiederholten Inhalt“
 einstuft. Vor dem Einreichen in der Play Console einfügen und bei Bedarf anpassen.
 
-## App-Name (max. 30 Zeichen) – VORSCHLAG
+## App-Name (max. 30 Zeichen) – FESTGELEGT
 
 ```
-SGT – Soldaten-Grundfitness
+SGT Soldaten-Grundfitness-Tool
 ```
 
-(27 Zeichen. Der offizielle Test heißt „Soldaten-Grundfitness-Tool“ – das Wort
-„Tool“ lassen wir im Titel bewusst weg, „SGT Rechner – Soldaten-Grundfitness“
-hätte außerdem 35 Zeichen und überschreitet das Limit. Der Launcher-Name unter
-dem App-Icon bleibt „SGT Rechner“.)
+(Exakt 30 Zeichen – schöpft das Play-Limit voll aus und enthält den kompletten
+offiziellen Testnamen als Suchbegriff. Der Launcher-Name unter dem App-Icon
+bleibt davon unberührt „SGT Rechner“.)
 
 ## Kurzbeschreibung (max. 80 Zeichen)
 

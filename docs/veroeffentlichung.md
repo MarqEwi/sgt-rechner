@@ -35,7 +35,7 @@ jeder Block ist unabhängig abhakbar.
 ## 3. Play Console: App anlegen
 
 1. [play.google.com/console](https://play.google.com/console) → **App erstellen**
-2. Name: **SGT – Soldaten-Grundfitness** (27 Zeichen, Limit ist 30) ·
+2. Name: **SGT Soldaten-Grundfitness-Tool** (exakt 30 Zeichen) ·
    Sprache Deutsch · **App** · **Kostenlos**
 3. Store-Eintrag: Texte aus `docs/store-texte.md` einfügen,
    Icon `icons/icon-512.png`, Feature-Grafik 1024×500 mit Hintergrund **#5C663B**
