@@ -1011,15 +1011,13 @@ const Edition = {
    Aktuell laufen Googles offizielle TEST-Anzeigen – vor der
    Veröffentlichung durch die echten Anzeigen-IDs ersetzen.            */
 /* Zentrale Werbe-Konfiguration.
-   ACHTUNG: Hier laufen noch Googles offizielle TEST-IDs, bis die neue
-   AdMob-App "SGT Rechner" samt Banner-Block angelegt und freigegeben ist
-   (neue AdMob-Apps liefern anfangs "code 3 / not approved" – normale
-   Prüfzeit). Für die Veröffentlichung: TESTING auf false setzen, die echte
-   Banner-ID hier eintragen UND die echte AdMob-App-ID (ca-app-pub-…~…)
-   im AndroidManifest hinterlegen. */
+   Echte IDs der AdMob-App "SGT Rechner" (MERCwerk-Konto). Die zugehörige
+   App-ID (ca-app-pub-…~…) steht im AndroidManifest. Hinweis: Neue
+   AdMob-Apps liefern anfangs oft "code 3 / not approved" – normale
+   Prüfzeit, danach erscheinen die Banner von selbst. */
 const ADS_CONF = {
-  TESTING: true,
-  BANNER_ID: "ca-app-pub-3940256099942544/6300978111" /* Google-Test-Banner – vor Release ersetzen! */
+  TESTING: false,
+  BANNER_ID: "ca-app-pub-7311552668399418/3371214421" /* Banner-Block "SGT Banner unten" */
 };
 
 const Ads = {
