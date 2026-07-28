@@ -1,0 +1,9 @@
+{
+	"appId": "de.mercwerk.pfttool",
+	"appName": "PFT Tool",
+	"webDir": "www",
+	"server": {
+		"androidScheme": "https"
+	},
+	"android": {}
+}
