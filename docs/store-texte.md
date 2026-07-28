@@ -1,76 +1,85 @@
-# Play-Store-Texte – PFT Tool (Vorschlag)
+# Play-Store-Texte – SGT Rechner (Vorschlag)
 
-Eigenständige Texte, bewusst anders aufgebaut und formuliert als beim BFT Tool,
-damit Google die App nicht als „wiederholten Inhalt" einstuft. Vor dem Einreichen
-in der Play Console einfügen und bei Bedarf anpassen.
+Dritte App der Reihe (nach BFT Tool und PFT Tool) – deshalb sind diese Texte
+bewusst mit anderem Einstieg, anderer Gliederung und anderem Wortlaut
+geschrieben, damit der Play-Review sie nicht als „wiederholten Inhalt“
+einstuft. Vor dem Einreichen in der Play Console einfügen und bei Bedarf anpassen.
 
-## App-Name (max. 30 Zeichen) – FESTGELEGT
+## App-Name (max. 30 Zeichen) – VORSCHLAG
 
 ```
-PFT – Physical Fitness Test
+SGT – Soldaten-Grundfitness
 ```
 
-(27 Zeichen – der volle Suchbegriff im Titel. „PFT Tool – Physical Fitness Test"
-hätte 32 Zeichen und überschreitet das Play-Limit von 30. Der Launcher-Name
-unter dem App-Icon bleibt davon unberührt „PFT Tool", Branding-konsistent
-zum BFT Tool.)
+(27 Zeichen. Der offizielle Test heißt „Soldaten-Grundfitness-Tool“ – das Wort
+„Tool“ lassen wir im Titel bewusst weg, „SGT Rechner – Soldaten-Grundfitness“
+hätte außerdem 35 Zeichen und überschreitet das Limit. Der Launcher-Name unter
+dem App-Icon bleibt „SGT Rechner“.)
 
 ## Kurzbeschreibung (max. 80 Zeichen)
 
 ```
-Punkterechner für den Physical Fitness Test: 5 Übungen, Tabellenwertung 0–6.
+Ampel-Auswertung für das Soldaten-Grundfitness-Tool: 4 Aufgaben, Grün-Gelb-Rot.
 ```
+
+(80 Zeichen)
 
 ## Vollständige Beschreibung (max. 4000 Zeichen)
 
 ```
-Wie fit bist du nach dem Maßstab des klassischen Bundeswehr-Fitnesstests? Das PFT Tool wertet den Physical Fitness Test (PFT) aus – den fünfteiligen Sporttest, der bei der Bundeswehr bis Ende 2009 im Einsatz war und bis heute ein beliebter Standard für Training, Vereine und Sportgruppen ist.
+Grün, Gelb oder Rot? Beim Soldaten-Grundfitness-Tool (SGT) der Bundeswehr zählt jede Zehntelsekunde: Vier einsatznahe Aufgaben, ein Durchlauf, ca. 20 kg Ausrüstung am Körper – und am Ende entscheidet die schwächste Einzelzeit über deine Kategorie. Der SGT Rechner nimmt dir die Auswertung ab: Zwischenzeiten eintippen, Ampel ablesen, gezielt trainieren.
 
-DIE FÜNF TESTAUFGABEN
-• Pendellauf 4×9 m – Aktionsschnelligkeit (Zeit auf 0,1 s)
-• Sit-ups in 40 Sekunden – Kraftausdauer des Rumpfes
-• Standweitsprung – Schnellkraft der Beine (in cm)
-• Liegestütz in 40 Sekunden – Kraftausdauer der Arme
-• 12-Minuten-Lauf – Ausdauer, wahlweise Bahn (Meter) oder Halle (Runden)
+EIN PARCOURS, VIER AUFGABEN
+Auf 55 × 10 Metern werden ohne feste Pause nacheinander absolviert:
+– SGT-A „Bewegen im Gelände“: ca. 130 m mit zweimal Slalom und 10 m Gleiten
+– SGT-B „Ziehen von Lasten“: 50-kg-Personendummy über ca. 40 m
+– SGT-C „Tragen von Lasten“: zwei 18-kg-Kanister über 100 m
+– SGT-D „Heben und Absetzen“: 24-kg-Kanister fünfmal auf 1,25 m Höhe
 
-ECHTE TABELLENWERTUNG
-Jede Übung wird mit 0 bis 6 Punkten nach den offiziellen Wertungstabellen der Sportschule der Bundeswehr bewertet – getrennt nach Männern und Frauen und vier Altersklassen (bis 24, 25–29, 30–34, 35–39). Bestanden ist der Test ab 15 von 30 Punkten, wenn zugleich keine Übung unter 2 Punkten liegt. Die kompletten Tabellen sind in der App einsehbar.
+DIE AMPEL SAGT DIR, WO DU STEHST
+Die App übernimmt das Bewertungssystem der offiziellen Handanweisung (Stand April 2019): Für jede Aufgabe gilt eine Grün-, Gelb- und Rot-Zone – für alle gleich, ohne Alters- oder Geschlechtergruppen. Eine gelbe Aufgabe macht den Durchlauf gelb, eine rote macht ihn rot, ein Abbruch zählt automatisch als Rot. Zusätzlich zeigt dir die App die Gesamtzeit als schnellen Überblick und alle Zielzeiten zum Nachschlagen. Hinweis der Vorschrift: Die Zeitwerte sind vorläufig.
 
-FÜR DICH SELBST …
-Leistungen eintippen und sofort sehen, wo du stehst: Punkte je Übung, Gesamtergebnis, bestanden oder nicht – plus Verlauf, um deinen Fortschritt über Wochen zu verfolgen.
+TRAINING MIT SYSTEM
+Jeder gespeicherte Durchlauf landet in deinem Verlauf. So erkennst du sofort, welche der vier Aufgaben dich Kategorie kostet – Schnelligkeit, Ziehen, Tragen oder Heben – und ob dein Training wirkt.
 
-… ODER FÜR DEINE GRUPPE
-Im Prüfermodus erfasst du beliebig viele Teilnehmerinnen und Teilnehmer, siehst alle Ergebnisse auf einen Blick und hast die komplette Aufbau- und Durchführungsanleitung für alle fünf Stationen dabei – vom Mattenaufbau bis zur Messwertaufnahme. Ergebnislisten lassen sich drucken oder als PDF, Bild und Text exportieren (Premium).
+AUSBILDER-FUNKTIONEN AN BORD
+Der Prüfermodus führt eine Ergebnisliste für ganze Gruppen und enthält eine bebilderte Anleitung zum Parcours: Aufbauplan mit allen Pylonen-Positionen, Materialsatz, Ablaufskizzen zu jeder Aufgabe und die typischen Ausführungsfehler. Listen lassen sich drucken oder als PDF, Bild und Text exportieren (Premium).
 
-DEINE DATEN GEHÖREN DIR
-Alles wird ausschließlich lokal auf deinem Gerät gespeichert. Kein Konto, kein Server, kein Tracking durch den Anbieter – die App funktioniert komplett offline.
+OFFLINE UND PRIVAT
+Es gibt kein Konto und keinen Server: Sämtliche Eingaben bleiben lokal auf deinem Gerät, die App läuft vollständig offline.
 
-PREMIUM (EINMALIG, KEIN ABO)
-Die freie Version enthält Werbung und begrenzt den Prüfermodus auf drei Teilnehmer. Der einmalige Premium-Kauf entfernt die Werbung, hebt das Limit auf und schaltet Export und Druck frei.
+EINMAL ZAHLEN STATT ABO
+Kostenlos nutzt du den kompletten Rechner mit Werbung und bis zu drei Personen im Prüfermodus. Premium (einmaliger Kauf) schaltet Werbefreiheit, unbegrenzte Listen sowie Export und Druck frei.
 
-HINWEIS
-Inoffizielle App, kein Angebot der Bundeswehr. Der PFT wurde dort zum 1. Januar 2010 durch den Basis-Fitness-Test abgelöst; „Physical Fitness Test" wird nur beschreibend verwendet. Alle Angaben ohne Gewähr – maßgeblich ist die offizielle Wertung.
+RECHTLICHER HINWEIS
+Privates, inoffizielles Projekt – kein Angebot der Bundeswehr. „Soldaten-Grundfitness-Tool“ wird nur beschreibend verwendet. Grundlage ist die öffentlich zugängliche Handanweisung; maßgeblich ist stets die offizielle Auswertung durch die Überprüfungsleitung. Alle Angaben ohne Gewähr.
 ```
 
-## Grafiken (Learning 17)
+## Grafiken
 
 - **App-Icon 512×512**: liegt bereit unter `icons/icon-512.png`
 - **Feature-Grafik 1024×500**: Logo bündig auf exakt gleichfarbigem Hintergrund –
-  Farbwert des Logo-Hintergrunds: **#5C673C** (aus dem Logo gemessen)
-- **Screenshots**: gerahmt mit Überschrift, eigene Motive (nicht die BFT-Screenshots):
-  1. Teilnehmer-Rechner mit Ergebnis („Alle 5 Übungen, sofort ausgewertet")
-  2. Wertungstabellen in den Einstellungen („Die offiziellen Tabellen immer dabei")
-  3. Prüfermodus-Liste („Ganze Gruppen erfassen")
-  4. Aufbau-&-Ablauf-Anleitung („Jede Station richtig aufbauen")
-  5. Verlauf („Fortschritt verfolgen")
+  Farbwert des Logo-Hintergrunds: **#4A5D3A** (exakt aus dem Logo, identisch mit
+  der Adaptive-Icon-Hintergrundfarbe)
+- **Screenshots**: eigene Motive und andere Überschriften als bei BFT/PFT, z. B.:
+  1. Teilnehmer-Ansicht mit Ampel-Ergebnis („Zeiten rein, Ampel ablesen“)
+  2. Kategoriegrenzen-Aufklapper („Alle Zielzeiten auf einen Blick“)
+  3. Aufbau-&-Ablauf-Tab mit Parcours-Plan („Der komplette Parcours erklärt“)
+  4. Stationsskizze SGT-D („Jede Aufgabe als Skizze“)
+  5. Verlauf („Sieh, welche Aufgabe dich Kategorie kostet“)
+  6. Prüfermodus-Liste („Ergebnisse für die ganze Gruppe“)
 
-## Formulare (Learning 16, Kurzreferenz)
+## Formulare (Kurzreferenz)
 
 - Data Safety: Geräte-/andere IDs, ungefährer Standort, App-Interaktionen,
-  Absturz/Diagnose – „erhoben und geteilt", Zweck Werbung + Analyse,
-  nicht sitzungsspezifisch, keine Löschfunktion
+  Absturz-/Diagnosedaten – jeweils „erhoben und geteilt“, Zweck Analyse + Werbung,
+  nicht sitzungsspezifisch, erforderlich, keine Löschfunktion;
+  „Gesundheit und Fitness“ NICHT ankreuzen (alle Eingaben bleiben lokal)
 - Anzeigen: Ja · Werbe-ID: Ja · Zielgruppe: 18+
-- Datenschutz-URL: `https://marqewi.github.io/pft-tool/datenschutz.html`
-- In-App-Produkt: `premium_unlock` (Einmalkauf, 2,99 €, „Digitale Inhalte";
+- Datenschutz-URL: `https://marqewi.github.io/sgt-rechner/datenschutz.html`
+  (ergibt sich aus dem Repo-Namen `sgt-rechner`, sobald GitHub Pages aktiviert ist)
+- In-App-Produkt: `premium_unlock` (Einmalkauf, 2,99 €, „Digitale Inhalte“;
   Kaufoptions-ID `premium-unlock`)
-- AdMob-DSGVO-Meldung: Option „Nicht einwilligen" auf AN
+- AdMob-DSGVO-Meldung: Option „Nicht einwilligen“ auf AN
+- Builds: immer „Generate Signed App Bundle → release“, versionCode bei jedem
+  Upload erhöhen (aktuell 1)
