@@ -156,9 +156,44 @@ In `android/app/build.gradle` den `versionCode` um 1 erhöhen (aktuell `1`),
 bei sichtbaren Änderungen zusätzlich den `versionName` anpassen. Danach wieder
 `npm run cap:sync` und neu bauen.
 
+## 5.6 Vor der Veröffentlichung: auf dem Handy testen
+
+1. **Lizenztester eintragen**, damit Testkäufe nichts kosten:
+   Play Console → ganz links oben aufs Haus (Alle Apps) → **Einstellungen →
+   Lizenztests** → eigene Google-Adresse hinzufügen → Lizenzantwort
+   **RESPOND_NORMALLY** → speichern.
+2. Im internen Test den **Einladungslink** öffnen (Reiter „Tester“), auf dem
+   Handy mit demselben Google-Konto annehmen und die App installieren.
+3. Auf dem Gerät prüfen:
+   - App startet ohne Absturz (heißt: die AdMob-App-ID im Manifest stimmt)
+   - Werbeleiste unten erscheint (oder bleibt leer, solange die AdMob-App noch
+     in Prüfung ist – siehe Abschnitt 2)
+   - Premium-Kauf lässt sich öffnen, Preis wird angezeigt, Kauf schaltet
+     werbefrei; „Käufe wiederherstellen“ funktioniert
+   - Diagnose bei Problemen: in den Einstellungen 5× auf die Versionsnummer
+     tippen, dann erscheinen Werbe- und Kauf-Status als Textzeilen
+
+## 5.7 In die Produktion veröffentlichen
+
+1. Play Console → **Testen und veröffentlichen → Produktion → Neuen Release
+   erstellen**.
+2. Statt neu hochzuladen: **„App-Bundles hinzufügen“ → aus der Bibliothek** das
+   bereits hochgeladene Bundle (versionCode 1) auswählen. Alternativ lässt sich
+   der interne Test über **„Release hochstufen → Produktion“** direkt übernehmen.
+3. Länder/Regionen auswählen (z. B. alle, oder nur Deutschland/Österreich/Schweiz).
+4. Versionshinweise eintragen, **Speichern → Release überprüfen →
+   Freigabe starten**.
+5. Die Prüfung durch Google dauert bei neuen Apps üblicherweise einige Stunden
+   bis wenige Tage. Danach ist die App im Play Store sichtbar.
+
+Hinweis: Falls die Play Console vor der Produktion einen **geschlossenen Test
+mit 12 Testern über 14 Tage** verlangt, betrifft das neuere private
+Entwicklerkonten. Dann zuerst diesen Test durchlaufen lassen; an der App selbst
+ändert sich dadurch nichts.
+
 ## 6. Nach der AdMob-Freigabe
 
-1. Prüfen, dass in `index.html` `TESTING: false` und die echte Banner-ID stehen
-2. Prüfen, dass im `AndroidManifest.xml` die echte AdMob-App-ID steht
-   (fehlt sie, stürzt die App beim Start ab!)
-3. `npm run cap:sync` → neu bauen → mit erhöhtem versionCode hochladen
+Die echten IDs sind bereits eingebaut (`TESTING: false`, Banner-ID in
+`ADS_CONF`, App-ID im `AndroidManifest.xml`). Die Freigabe passiert allein auf
+Googles Seite – ein neuer Build ist dafür **nicht** nötig. Sobald AdMob die App
+freigegeben hat, erscheinen die Banner von selbst.
