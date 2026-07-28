@@ -52,16 +52,89 @@ jeder Block ist unabhängig abhakbar.
    Kategorie „Digitale Inhalte“
 4. Kaufoption anlegen mit ID `premium-unlock` · Preis **2,99 €** → aktivieren
 
-## 5. Signieren & hochladen (Android Studio)
+## 5. Signieren & hochladen (Android Studio) – ausführlich
 
-1. Die Datei `android/keystore.properties.example` kopieren zu
-   `android/keystore.properties` und die Werte des **vorhandenen** Keystores
-   eintragen (derselbe Keystore signiert auch BFT und PFT – nicht neu erzeugen!)
-2. Vor jedem Build: `npm run cap:sync`
-3. Android Studio: **Build → Generate Signed App Bundle → release**
-4. Das `.aab` in der Play Console hochladen (erst interner Test, dann Produktion)
-5. Bei jedem weiteren Upload in `android/app/build.gradle` den `versionCode`
-   um 1 erhöhen
+### 5.1 Projekt auf den PC holen und vorbereiten
+
+1. Ordner für das Projekt wählen und in der Eingabeaufforderung (cmd) öffnen.
+   Beim **ersten Mal** klonen:
+   ```
+   git clone https://github.com/MarqEwi/sgt-rechner.git
+   cd sgt-rechner
+   ```
+   Wenn der Ordner schon existiert, stattdessen nur aktualisieren:
+   ```
+   cd sgt-rechner
+   git checkout main
+   git pull
+   ```
+2. Abhängigkeiten installieren (nur nötig, wenn `node_modules` fehlt oder sich
+   `package.json` geändert hat). Das `postinstall` mit patch-package läuft
+   dabei automatisch mit – es behebt einen Build-Fehler des AdMob-Plugins:
+   ```
+   npm install
+   ```
+3. Web-Dateien in die App kopieren – **vor jedem Build**:
+   ```
+   npm run cap:sync
+   ```
+
+### 5.2 Keystore hinterlegen (einmalig pro PC)
+
+1. Die vorhandene Keystore-Datei (derselbe Schlüssel wie bei BFT und PFT –
+   **niemals einen neuen erzeugen**, sonst lässt sich die App später nicht mehr
+   aktualisieren) in den Ordner `android/` kopieren, z. B. als `android.keystore`.
+2. Im Ordner `android/` die Datei `keystore.properties.example` kopieren und die
+   Kopie in `keystore.properties` umbenennen (die Endung `.example` entfällt).
+3. Diese Datei im Editor öffnen und die vier Werte eintragen:
+   ```
+   storeFile=android.keystore
+   storePassword=<Keystore-Passwort>
+   keyAlias=<Alias des Schlüssels>
+   keyPassword=<Passwort des Schlüssels>
+   ```
+   `keystore.properties` und `*.keystore` stehen in `.gitignore` und landen
+   deshalb nie auf GitHub.
+
+### 5.3 Signiertes App Bundle bauen
+
+1. Android Studio öffnen (aus dem Projektordner heraus geht auch
+   `npm run cap:open`) und den Ordner `android` als Projekt laden.
+   Beim ersten Start dauert die Gradle-Synchronisierung ein paar Minuten.
+2. Menü **Build → Generate Signed App Bundle / APK…**
+3. **Android App Bundle** auswählen → *Next*.
+4. Keystore-Angaben eintragen (dieselben wie in `keystore.properties`):
+   Key store path, Passwörter, Alias → *Next*.
+5. Build-Variante **release** wählen → *Create*.
+6. Nach dem Build erscheint unten rechts eine Meldung mit „locate“. Die Datei
+   liegt unter:
+   ```
+   android/app/release/app-release.aab
+   ```
+
+### 5.4 In der Play Console hochladen
+
+1. Play Console → deine App → links **Testen und veröffentlichen → Tests →
+   Interner Test** (empfohlen für den ersten Upload; für die Monetarisierung
+   genügt ein Bundle in irgendeinem Track).
+2. **Neuen Release erstellen**.
+3. Beim ersten Mal fragt Google nach der **Play App-Signatur**: die
+   Standardeinstellung („Von Google Play verwalteter Signaturschlüssel“)
+   einfach bestätigen. Dein Keystore ist dann der Upload-Schlüssel.
+4. Die Datei `app-release.aab` hochladen.
+5. Release-Name kann bleiben; unter „Versionshinweise“ z. B. eintragen:
+   `Erste Version des SGT Rechners.`
+6. **Speichern → Release überprüfen → Freigabe starten**.
+
+Nach diesem Upload kennt die Play Console den Paketnamen
+`de.mercwerk.sgtrechner`, und das In-App-Produkt aus Schritt 4 lässt sich
+anlegen.
+
+### 5.5 Bei jedem weiteren Upload
+
+In `android/app/build.gradle` den `versionCode` um 1 erhöhen (aktuell `1`),
+bei sichtbaren Änderungen zusätzlich den `versionName` anpassen. Danach wieder
+`npm run cap:sync` und neu bauen.
 
 ## 6. Nach der AdMob-Freigabe
 
