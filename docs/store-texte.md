@@ -61,9 +61,9 @@ Alle Grafiken liegen fertig unter `docs/store-grafiken/`:
 (gerahmte Screenshots mit Überschrift, Motive siehe unten).
 
 - **App-Icon 512×512**: liegt bereit unter `icons/icon-512.png`
-- **Feature-Grafik 1024×500**: Logo bündig auf exakt gleichfarbigem Hintergrund –
-  Farbwert des Logo-Hintergrunds: **#5C663B** (exakt aus dem Logo, identisch mit
-  der Adaptive-Icon-Hintergrundfarbe)
+- **Feature-Grafik 1024×500**: Logo-Schriftzug links, rechts die vier
+  SGT-Aufgaben als Piktogramm-Reihe (Slalom, Ziehen, Tragen, Heben) auf
+  Olivgrün – liegt fertig unter `docs/store-grafiken/feature-grafik-1024x500.png`
 - **Screenshots**: eigene Motive und andere Überschriften als bei BFT/PFT, z. B.:
   1. Teilnehmer-Ansicht mit Ampel-Ergebnis („Zeiten rein, Ampel ablesen“)
   2. Kategoriegrenzen-Aufklapper („Alle Zielzeiten auf einen Blick“)
