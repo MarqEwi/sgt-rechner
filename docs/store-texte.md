@@ -5,27 +5,33 @@ bewusst mit anderem Einstieg, anderer Gliederung und anderem Wortlaut
 geschrieben, damit der Play-Review sie nicht als „wiederholten Inhalt“
 einstuft. Vor dem Einreichen in der Play Console einfügen und bei Bedarf anpassen.
 
-## App-Name (max. 30 Zeichen) – FESTGELEGT
+## App-Name (max. 30 Zeichen) – FESTGELEGT nach Play-Ablehnung
 
 ```
-SGT Soldaten-Grundfitness-Tool
+SGT Rechner (inoffiziell)
 ```
 
-(Exakt 30 Zeichen – schöpft das Play-Limit voll aus und enthält den kompletten
-offiziellen Testnamen als Suchbegriff. Der Launcher-Name unter dem App-Icon
-bleibt davon unberührt „SGT Rechner“.)
+(25 Zeichen. Der erste Titel „SGT Soldaten-Grundfitness-Tool“ wurde von Google
+wegen der **Richtlinie zu Identitätsdiebstahl** abgelehnt: Titel und App-Symbol
+trugen den amtlichen Programmnamen ohne erkennbare Distanzierung. Das Akronym
+„SGT“ ist mit Distanzierung zulässig – der Zusatz „(inoffiziell)“ leistet
+genau das. Der volle amtliche Name darf weiterhin **beschreibend** in der
+Kurz- und Langbeschreibung stehen. Der Launcher-Name bleibt „SGT Rechner“.)
 
 ## Kurzbeschreibung (max. 80 Zeichen)
 
 ```
-Ampel-Auswertung für das Soldaten-Grundfitness-Tool: 4 Aufgaben, Grün-Gelb-Rot.
+Inoffizieller SGT-Rechner: 4 Zeiten eintippen, Ampelwertung Grün-Gelb-Rot sehen.
 ```
 
-(80 Zeichen)
+(80 Zeichen – „Inoffizieller“ steht bewusst vorn, als zusätzliche
+Distanzierung nach der Play-Ablehnung.)
 
 ## Vollständige Beschreibung (max. 4000 Zeichen)
 
 ```
+INOFFIZIELLE APP – privates Projekt, kein Angebot der Bundeswehr oder einer Behörde. „Soldaten-Grundfitness-Tool“ wird ausschließlich beschreibend verwendet.
+
 Grün, Gelb oder Rot? Beim Soldaten-Grundfitness-Tool (SGT) der Bundeswehr zählt jede Zehntelsekunde: Vier einsatznahe Aufgaben, ein Durchlauf, ca. 20 kg Ausrüstung am Körper – und am Ende entscheidet die schwächste Einzelzeit über deine Kategorie. Der SGT Rechner nimmt dir die Auswertung ab: Zwischenzeiten eintippen, Ampel ablesen, gezielt trainieren.
 
 EIN PARCOURS, VIER AUFGABEN
@@ -85,4 +91,4 @@ Alle Grafiken liegen fertig unter `docs/store-grafiken/`:
   Kaufoptions-ID `premium-unlock`)
 - AdMob-DSGVO-Meldung: Option „Nicht einwilligen“ auf AN
 - Builds: immer „Generate Signed App Bundle → release“, versionCode bei jedem
-  Upload erhöhen (aktuell 2)
+  Upload erhöhen (aktuell 3)
