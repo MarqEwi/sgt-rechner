@@ -35,10 +35,11 @@ jeder Block ist unabhängig abhakbar.
 ## 3. Play Console: App anlegen
 
 1. [play.google.com/console](https://play.google.com/console) → **App erstellen**
-2. Name: **SGT Rechner (privates Projekt)** (exakt 30 Zeichen; der amtliche
+2. Name: **SGT Rechner – Bewertungshilfe** (29 Zeichen; der amtliche
    Name darf wegen der Play-Richtlinie zu Identitätsdiebstahl nicht ohne
-   Distanzierung in den Titel – „(privates Projekt)“ leistet diese
-   Distanzierung) · Sprache Deutsch · **App** · **Kostenlos**
+   Distanzierung in den Titel – „Bewertungshilfe“ stellt die App als
+   Hilfsmittel dar; Rückfalloption bei erneuter Ablehnung:
+   „SGT Rechner (inoffiziell)“) · Sprache Deutsch · **App** · **Kostenlos**
 3. Store-Eintrag: Texte aus `docs/store-texte.md` einfügen,
    Icon `icons/icon-512.png`, Feature-Grafik 1024×500 mit Hintergrund **#5B653A**
 4. **Data Safety** ausfüllen (siehe Kurzreferenz in `docs/store-texte.md`);
