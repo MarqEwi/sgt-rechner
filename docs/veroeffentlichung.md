@@ -35,10 +35,11 @@ jeder Block ist unabhängig abhakbar.
 ## 3. Play Console: App anlegen
 
 1. [play.google.com/console](https://play.google.com/console) → **App erstellen**
-2. Name: **SGT Soldaten-Grundfitness-Tool** (exakt 30 Zeichen) ·
+2. Name: **SGT Rechner (inoffiziell)** (25 Zeichen; der amtliche Name darf
+   wegen der Play-Richtlinie zu Identitätsdiebstahl nicht in den Titel) ·
    Sprache Deutsch · **App** · **Kostenlos**
 3. Store-Eintrag: Texte aus `docs/store-texte.md` einfügen,
-   Icon `icons/icon-512.png`, Feature-Grafik 1024×500 mit Hintergrund **#5C663B**
+   Icon `icons/icon-512.png`, Feature-Grafik 1024×500 mit Hintergrund **#5B653A**
 4. **Data Safety** ausfüllen (siehe Kurzreferenz in `docs/store-texte.md`);
    „Gesundheit und Fitness“ NICHT ankreuzen
 5. Anzeigen: **Ja** · Werbe-ID: **Ja** · Zielgruppe: **18+**
@@ -152,7 +153,7 @@ anlegen.
 
 ### 5.5 Bei jedem weiteren Upload
 
-In `android/app/build.gradle` den `versionCode` um 1 erhöhen (aktuell `2`),
+In `android/app/build.gradle` den `versionCode` um 1 erhöhen (aktuell `3`),
 bei sichtbaren Änderungen zusätzlich den `versionName` anpassen. Danach wieder
 `npm run cap:sync` und neu bauen.
 
