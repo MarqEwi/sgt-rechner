@@ -8,15 +8,18 @@ einstuft. Vor dem Einreichen in der Play Console einfügen und bei Bedarf anpass
 ## App-Name (max. 30 Zeichen) – FESTGELEGT nach Play-Ablehnung
 
 ```
-SGT Rechner (inoffiziell)
+SGT Rechner (privates Projekt)
 ```
 
-(25 Zeichen. Der erste Titel „SGT Soldaten-Grundfitness-Tool“ wurde von Google
-wegen der **Richtlinie zu Identitätsdiebstahl** abgelehnt: Titel und App-Symbol
-trugen den amtlichen Programmnamen ohne erkennbare Distanzierung. Das Akronym
-„SGT“ ist mit Distanzierung zulässig – der Zusatz „(inoffiziell)“ leistet
-genau das. Der volle amtliche Name darf weiterhin **beschreibend** in der
-Kurz- und Langbeschreibung stehen. Der Launcher-Name bleibt „SGT Rechner“.)
+(Exakt 30 Zeichen. Der erste Titel „SGT Soldaten-Grundfitness-Tool“ wurde von
+Google wegen der **Richtlinie zu Identitätsdiebstahl** abgelehnt: Titel und
+App-Symbol trugen den amtlichen Programmnamen ohne erkennbare Distanzierung.
+Das Akronym „SGT“ ist mit Distanzierung zulässig – der Zusatz
+„(privates Projekt)“ leistet genau das, ohne das sperrige „inoffiziell“ in
+den Titel zu holen. Sicherste Rückfalloption bei einer erneuten Ablehnung:
+„SGT Rechner (inoffiziell)“ (25 Zeichen). Der volle amtliche Name darf
+weiterhin **beschreibend** in der Kurz- und Langbeschreibung stehen. Der
+Launcher-Name auf dem Handy bleibt „SGT Rechner“.)
 
 ## Kurzbeschreibung (max. 80 Zeichen)
 

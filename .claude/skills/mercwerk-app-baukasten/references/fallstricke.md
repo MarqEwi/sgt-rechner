@@ -130,7 +130,8 @@ denken statt variieren.
 Store-Titel noch ins App-Symbol.** Der SGT Rechner wurde abgelehnt, weil
 Titel („SGT Soldaten-Grundfitness-Tool") und Icon-Schriftzug den amtlichen
 Programmnamen ohne Distanzierung trugen. Lösung: Titel mit klarer
-Distanzierung („SGT Rechner (inoffiziell)"), Icon nur mit dem eigenen
+Distanzierung – z. B. „(privates Projekt)" oder „(inoffiziell)" direkt hinter
+dem App-Namen –, Icon nur mit dem eigenen
 App-Namen, Langbeschreibung beginnt mit dem Inoffiziell-Hinweis. Das
 **Akronym** ist mit Distanzierung zulässig; der volle amtliche Name darf
 beschreibend im Fließtext stehen. Gilt auch für die Feature-Grafik – und:
