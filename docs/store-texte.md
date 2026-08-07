@@ -33,7 +33,7 @@ Distanzierung nach der Play-Ablehnung.)
 ## Vollständige Beschreibung (max. 4000 Zeichen)
 
 ```
-INOFFIZIELLE APP – privates Projekt, kein Angebot der Bundeswehr oder einer Behörde. „Soldaten-Grundfitness-Tool“ wird ausschließlich beschreibend verwendet.
+INOFFIZIELLE APP – ein privates Projekt. Diese App vertritt keine Behörde, steht in keiner Verbindung zur Bundeswehr und wird von ihr weder herausgegeben noch unterstützt. „Soldaten-Grundfitness-Tool“ wird ausschließlich beschreibend verwendet. Die verwendeten amtlichen Informationen stammen aus der offiziellen Handanweisung; alle Quellen sind am Ende dieser Beschreibung verlinkt.
 
 Grün, Gelb oder Rot? Beim Soldaten-Grundfitness-Tool (SGT) der Bundeswehr zählt jede Zehntelsekunde: Vier einsatznahe Aufgaben, ein Durchlauf, ca. 20 kg Ausrüstung am Körper – und am Ende entscheidet die schwächste Einzelzeit über deine Kategorie. Der SGT Rechner nimmt dir die Auswertung ab: Zwischenzeiten eintippen, Ampel ablesen, gezielt trainieren.
 
@@ -59,8 +59,15 @@ Es gibt kein Konto und keinen Server: Sämtliche Eingaben bleiben lokal auf dein
 EINMAL ZAHLEN STATT ABO
 Kostenlos nutzt du den kompletten Rechner mit Werbung und bis zu drei Personen im Prüfermodus. Premium (einmaliger Kauf) schaltet Werbefreiheit, unbegrenzte Listen sowie Export und Druck frei.
 
+QUELLEN DER AMTLICHEN INFORMATIONEN
+Alle wiedergegebenen Angaben (Zeitwerte, Maße, Abläufe) stammen aus diesen frei zugänglichen Originalquellen:
+1) Kommando Streitkräftebasis / Institut für Präventivmedizin der Bundeswehr, „Handanweisung Soldaten-Grundfitness-Tool ‚SGT‘“, Stand April 2019 (PDF): https://wmm.pic-mediaserver.de/z202003/downloads/SGT_Handanweisung_190404_Intranet.pdf
+2) Institut für Präventivmedizin der Bundeswehr (Entwickler des SGT), offizielle Seite: https://www.bundeswehr.de/de/organisation/unterstuetzungsbereich/sanitaetsdienst/kommando-gesundheitsversorgung-in-koblenz/sanitaetsakademie-der-bundeswehr/institut-fuer-praeventivmedizin-der-bundeswehr-in-andernach/institut-fuer-praeventivmedizin-der-bundeswehr-in-andernach
+3) Beschreibung des SGT auf der offiziellen Seite der Bundeswehr: https://www.bundeswehr.de/de/organisation/luftwaffe/aktuelles/sport-gehoert-zur-offiziersausbildung-5768232
+Dieselben Quellen sind auch in der App unter „Einstellungen → Quellen“ verlinkt.
+
 RECHTLICHER HINWEIS
-Privates, inoffizielles Projekt – kein Angebot der Bundeswehr. „Soldaten-Grundfitness-Tool“ wird nur beschreibend verwendet. Grundlage ist die öffentlich zugängliche Handanweisung; maßgeblich ist stets die offizielle Auswertung durch die Überprüfungsleitung. Alle Angaben ohne Gewähr.
+Privates, inoffizielles Projekt – diese App vertritt keine Behörde und ist kein Angebot der Bundeswehr. „Soldaten-Grundfitness-Tool“ wird nur beschreibend verwendet. Grundlage ist die oben verlinkte, öffentlich zugängliche Handanweisung; maßgeblich ist stets die offizielle Auswertung durch die Überprüfungsleitung. Alle Angaben ohne Gewähr.
 ```
 
 ## Grafiken
@@ -94,4 +101,4 @@ Alle Grafiken liegen fertig unter `docs/store-grafiken/`:
   Kaufoptions-ID `premium-unlock`)
 - AdMob-DSGVO-Meldung: Option „Nicht einwilligen“ auf AN
 - Builds: immer „Generate Signed App Bundle → release“, versionCode bei jedem
-  Upload erhöhen (aktuell 3)
+  Upload erhöhen (aktuell 4)

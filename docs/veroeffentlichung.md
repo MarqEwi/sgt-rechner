@@ -41,7 +41,11 @@ jeder Block ist unabhängig abhakbar.
    Hilfsmittel dar; Rückfalloption bei erneuter Ablehnung:
    „SGT Rechner (inoffiziell)“) · Sprache Deutsch · **App** · **Kostenlos**
 3. Store-Eintrag: Texte aus `docs/store-texte.md` einfügen,
-   Icon `icons/icon-512.png`, Feature-Grafik 1024×500 mit Hintergrund **#5B653A**
+   Icon `icons/icon-512.png`, Feature-Grafik 1024×500 mit Hintergrund **#5B653A**.
+   **Wichtig:** Der Abschnitt „QUELLEN DER AMTLICHEN INFORMATIONEN“ mit den
+   Links muss mit in die Beschreibung – ohne ihn lehnt Google wegen der
+   Richtlinie zu irreführenden Behauptungen ab („Fehlender Quell-Link für
+   Behördeninformationen“).
 4. **Data Safety** ausfüllen (siehe Kurzreferenz in `docs/store-texte.md`);
    „Gesundheit und Fitness“ NICHT ankreuzen
 5. Anzeigen: **Ja** · Werbe-ID: **Ja** · Zielgruppe: **18+**
@@ -155,7 +159,7 @@ anlegen.
 
 ### 5.5 Bei jedem weiteren Upload
 
-In `android/app/build.gradle` den `versionCode` um 1 erhöhen (aktuell `3`),
+In `android/app/build.gradle` den `versionCode` um 1 erhöhen (aktuell `4`),
 bei sichtbaren Änderungen zusätzlich den `versionName` anpassen. Danach wieder
 `npm run cap:sync` und neu bauen.
 
