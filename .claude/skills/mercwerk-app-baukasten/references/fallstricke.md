@@ -138,6 +138,21 @@ beschreibend im Fließtext stehen. Gilt auch für die Feature-Grafik – und:
 das Launcher-Icon steckt im App-Bundle, ein Icon-Wechsel braucht also einen
 neuen Build mit erhöhtem versionCode.
 
+**Richtlinie zu irreführenden Behauptungen: Wer Behördeninformationen
+wiedergibt, muss die Originalquelle verlinken.** Der SGT Rechner wurde ein
+zweites Mal abgelehnt – diesmal mit „Fehlender Quell-Link für
+Behördeninformationen": Die Beschreibung nannte die amtliche Handanweisung,
+verlinkte sie aber nicht. Verlangt sind (1) eine oder mehrere eindeutige,
+funktionierende URLs zu den Originalquellen **in der Store-Beschreibung** und
+(2) ein klar erkennbarer Hinweis, dass die App keine Behörde vertritt. Google
+prüft ausdrücklich auch die App selbst, deshalb gehören dieselben Links
+sichtbar in die App (Quellen-Abschnitt, Anleitungsbereich, Rechenweg) und auf
+die Datenschutzseite. Betrifft jede App dieser Reihe, weil alle amtliche
+Vorschriften auswerten – die Quell-Links also von Anfang an einbauen. Vorher
+prüfen, dass die URLs wirklich erreichbar sind; ideal ist ein Dokument auf
+einer amtlichen Domain plus eine offizielle Seite, die das Verfahren
+beschreibt.
+
 ## Werkzeuge und Umgebung
 
 **Eine als Administrator geöffnete Eingabeaufforderung startet in
