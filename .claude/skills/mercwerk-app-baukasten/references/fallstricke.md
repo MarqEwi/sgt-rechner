@@ -45,6 +45,15 @@ ob der native Zweig dort überhaupt jemals implementiert war.
 **Ohne eigenen backButton-Listener beendet die Zurück-Geste die App sofort** –
 auch aus einem offenen Dialog heraus. Braucht `@capacitor/app`.
 
+**Das AdMob-Banner schwebt über der Navigationsleiste.** Zwei Ursachen
+zugleich: Das Plugin hängt es an das erste Kind von `android.R.id.content`
+(Capacitors gepolstertes `CoordinatorLayout`) und zieht ab Android 15 die
+Sicherheitszone noch einmal selbst ab. Beides per patch-package beheben
+(siehe `architektur.md`). Danach liegt das Banner über dem Inhalt – die
+Reserve über `--adbar-h` mit **`max`** statt `+` rechnen, sonst schwebt auf
+Geräten mit Gestensteuerung alles genau um die Sicherheitszone zu hoch, und
+das fällt nur auf echten Geräten auf.
+
 ## Android-Projekt
 
 **Anwendungs-IDs dürfen keine Bindestriche enthalten.** `de.mercwerk.sgt-rechner`

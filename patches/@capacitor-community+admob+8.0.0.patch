@@ -11,3 +11,94 @@ index 1056a18..13d21f7 100644
          }
      }
      lintOptions {
+diff --git a/node_modules/@capacitor-community/admob/android/src/main/java/com/getcapacitor/community/admob/banner/BannerExecutor.java b/node_modules/@capacitor-community/admob/android/src/main/java/com/getcapacitor/community/admob/banner/BannerExecutor.java
+index c629139..6e04035 100644
+--- a/node_modules/@capacitor-community/admob/android/src/main/java/com/getcapacitor/community/admob/banner/BannerExecutor.java
++++ b/node_modules/@capacitor-community/admob/android/src/main/java/com/getcapacitor/community/admob/banner/BannerExecutor.java
+@@ -2,16 +2,15 @@ package com.getcapacitor.community.admob.banner;
+ 
+ import android.app.Activity;
+ import android.content.Context;
+-import android.os.Build;
+ import android.util.DisplayMetrics;
+ import android.util.Log;
+ import android.view.Gravity;
+ import android.view.View;
+ import android.view.ViewGroup;
+ import android.view.WindowManager;
++import android.widget.FrameLayout;
+ import android.widget.RelativeLayout;
+ import androidx.annotation.NonNull;
+-import androidx.coordinatorlayout.widget.CoordinatorLayout;
+ import androidx.core.util.Supplier;
+ import com.getcapacitor.JSObject;
+ import com.getcapacitor.PluginCall;
+@@ -44,7 +43,14 @@ public class BannerExecutor extends Executor {
+     }
+ 
+     public void initialize() {
+-        mViewGroup = (ViewGroup) ((ViewGroup) activitySupplier.get().findViewById(android.R.id.content)).getChildAt(0);
++        // MERCwerk-Patch: Das Banner haengt am Inhalts-FrameLayout selbst, nicht an
++        // dessen erstem Kind. Das erste Kind ist Capacitors CoordinatorLayout mit der
++        // WebView; Capacitor polstert es je nach WebView-Version unten um die
++        // Systemleisten, sodass ein Banner darin nie tiefer als bis zur Oberkante der
++        // Navigationsleiste reichen kann. android.R.id.content wird nicht gepolstert
++        // und reicht bis an die Fensterkante.
++        // Zurueck zum Standard ist eine einzige Zeile: wieder .getChildAt(0) anhaengen.
++        mViewGroup = (ViewGroup) activitySupplier.get().findViewById(android.R.id.content);
+     }
+ 
+     public void showBanner(final PluginCall call) {
+@@ -85,9 +91,11 @@ public class BannerExecutor extends Executor {
+             mAdViewLayout.setHorizontalGravity(Gravity.CENTER_HORIZONTAL);
+             mAdViewLayout.setVerticalGravity(Gravity.BOTTOM);
+ 
+-            final CoordinatorLayout.LayoutParams mAdViewLayoutParams = new CoordinatorLayout.LayoutParams(
+-                CoordinatorLayout.LayoutParams.WRAP_CONTENT,
+-                CoordinatorLayout.LayoutParams.WRAP_CONTENT
++            // MERCwerk-Patch: Eltern-View ist jetzt das Inhalts-FrameLayout, also
++            // FrameLayout.LayoutParams statt CoordinatorLayout.LayoutParams.
++            final FrameLayout.LayoutParams mAdViewLayoutParams = new FrameLayout.LayoutParams(
++                FrameLayout.LayoutParams.WRAP_CONTENT,
++                FrameLayout.LayoutParams.WRAP_CONTENT
+             );
+ 
+             // TODO: Make an enum like the AdSizeEnum?
+@@ -103,23 +111,20 @@ public class BannerExecutor extends Executor {
+                     break;
+             }
+ 
+-            // set Safe Area only for Android 15+
+-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.VANILLA_ICE_CREAM) {
+-                View rootView = activitySupplier.get().getWindow().getDecorView();
+-                rootView.setOnApplyWindowInsetsListener((v, insets) -> {
+-                    int bottomInset = insets.getSystemWindowInsetBottom();
+-                    int topInset = insets.getSystemWindowInsetTop();
+-
+-                    if ("TOP_CENTER".equals(adOptions.position)) {
+-                        mAdViewLayoutParams.setMargins(0, topInset, 0, 0);
+-                    } else {
+-                        mAdViewLayoutParams.setMargins(0, 0, 0, bottomInset);
+-                    }
+-
+-                    mAdViewLayout.setLayoutParams(mAdViewLayoutParams);
+-                    return insets;
+-                });
+-            }
++            // MERCwerk-Patch: Der plugin-eigene Insets-Listener ist entfernt.
++            //
++            // Er zog ab Android 15 die Sicherheitszone noch einmal selbst ab
++            // (setMargins(0, 0, 0, bottomInset)) und schob das Banner damit ueber die
++            // Navigationsleiste – gewollt ist ein Banner buendig am unteren Rand.
++            //
++            // Zurueck muss er, falls die App spaeter auf insetsHandling="disable"
++            // umgestellt wird oder das viewport-fit=cover aus dem <meta viewport>
++            // verschwindet: dann polstert Capacitor die WebView nicht mehr bzw. anders
++            // und die Sicherheitszone muesste wieder abgezogen werden.
++            //
++            // Auf keinen Fall stattdessen an mViewGroup haengen: dort sitzt Capacitors
++            // eigener Listener, und setOnApplyWindowInsetsListener wuerde ihn
++            // ueberschreiben – das zerstoert die Polsterung der ganzen App.
+ 
+             mAdViewLayout.setLayoutParams(mAdViewLayoutParams);
+ 

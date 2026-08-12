@@ -39,7 +39,12 @@
     background:var(--bg); color:var(--text);
     font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
     line-height:1.5; min-height:100dvh; display:flex; flex-direction:column;
-    padding-bottom:env(safe-area-inset-bottom);
+    /* Platz für die Werbeleiste: Das Banner liegt über dem Inhalt und sitzt
+       bündig an der Fensterunterkante (siehe Patch in patches/). --adbar-h wird
+       ab genau dieser Kante gemessen, die Sicherheitszone steckt also schon
+       darin – deshalb das Maximum und keine Summe. Ohne Banner bleibt der
+       Abstand zur Gestenleiste erhalten. */
+    padding-bottom:max(var(--adbar-h,0px), env(safe-area-inset-bottom,0px));
   }
   body::before{content:"";position:fixed;inset:0;z-index:-1;
     background:#3f4a33 var(--camo) center/cover no-repeat}
@@ -179,11 +184,13 @@
   details.station li{margin:.22rem 0;font-size:.9rem}
   .tag{display:inline-block;background:var(--bg3);border-radius:7px;padding:2px 8px;font-size:.76rem;color:var(--text2);margin:2px 3px 2px 0}
   /* Modals */
+  /* Der untere Innenabstand hält die Werbeleiste frei – sonst reichen Fenster
+     hinter das Banner. */
   .modal-back{position:fixed;inset:0;background:rgba(10,12,8,.55);z-index:50;display:none;
-    align-items:center;justify-content:center;padding:16px}
+    align-items:center;justify-content:center;padding:16px 16px calc(16px + var(--adbar-h,0px))}
   .modal-back.open{display:flex}
-  @media(min-width:560px){.modal-back{align-items:center;padding:20px}}
-  #modal-onboarding{align-items:center;padding:16px}
+  @media(min-width:560px){.modal-back{align-items:center;padding:20px 20px calc(20px + var(--adbar-h,0px))}}
+  #modal-onboarding{align-items:center;padding:16px 16px calc(16px + var(--adbar-h,0px))}
   #modal-onboarding .modal{border-radius:18px}
   .modal{background:var(--bg2);width:100%;max-width:560px;max-height:86dvh;overflow-y:auto;
     border-radius:18px;padding:18px 18px 22px;border:1px solid var(--line)}
@@ -202,15 +209,13 @@
     border-top:1px solid var(--line);padding:6px 10px calc(6px + env(safe-area-inset-bottom));
     display:none;align-items:center;gap:10px;font-size:.78rem;color:var(--text2)}
   body.edition-free #adbar{display:flex}
-  body.edition-free main{padding-bottom:130px}
   body.native-ads #adbar{display:none}
-  body.native-ads.edition-free main{padding-bottom:calc(var(--native-ad-h,60px) + 40px)}
   #t-sticky{position:fixed;left:0;right:0;bottom:var(--adbar-h,0);z-index:24;display:none;
     align-items:center;gap:10px;background:var(--panel);border-top:1px solid var(--line);
     box-shadow:0 -3px 12px rgba(0,0,0,.14);padding:8px 14px}
   body.edition-premium #t-sticky{padding-bottom:calc(8px + env(safe-area-inset-bottom))}
   body.tsticky-on #t-sticky{display:flex}
-  body.tsticky-on #view-teilnehmer{padding-bottom:20px}
+  body.tsticky-on #view-teilnehmer{padding-bottom:72px}
   #t-sticky .ts-left{flex:1;color:var(--text);font-size:.9rem}
   #t-sticky .ts-left b{font-size:1.1rem;font-variant-numeric:tabular-nums}
   #t-sticky .grade{font-size:.82rem;padding:3px 11px}
@@ -240,7 +245,8 @@
   .modal-back.drawer-back{display:flex;visibility:hidden;opacity:0;align-items:stretch;justify-content:flex-end;padding:0;transition:opacity .2s ease}
   .modal-back.drawer-back.open{visibility:visible;opacity:1}
   .drawer{width:92%;max-width:420px;height:100dvh;max-height:100dvh;border-radius:16px 0 0 16px;
-    overflow-y:auto;transform:translateX(100%);transition:transform .28s ease;padding:16px}
+    overflow-y:auto;transform:translateX(100%);transition:transform .28s ease;
+    padding:16px 16px calc(16px + var(--adbar-h,0px))}
   .drawer-back.open .drawer{transform:translateX(0)}
   .drawer-head{display:flex;align-items:center;gap:10px;margin-bottom:8px}
   .drawer-head h2{margin:0;flex:1;font-size:1.2rem}
@@ -992,7 +998,7 @@ const SGT = {
 
 /* ---------- Hilfsfunktionen ---------- */
 const $ = id => document.getElementById(id);
-const APP_VERSION = "1.0.4";
+const APP_VERSION = "1.0.5";
 function parseNum(v){
   if (v == null) return null;
   const n = parseFloat(String(v).trim().replace(",", "."));

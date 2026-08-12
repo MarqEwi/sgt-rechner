@@ -159,7 +159,7 @@ anlegen.
 
 ### 5.5 Bei jedem weiteren Upload
 
-In `android/app/build.gradle` den `versionCode` um 1 erhöhen (aktuell `4`),
+In `android/app/build.gradle` den `versionCode` um 1 erhöhen (aktuell `5`),
 bei sichtbaren Änderungen zusätzlich den `versionName` anpassen. Danach wieder
 `npm run cap:sync` und neu bauen.
 

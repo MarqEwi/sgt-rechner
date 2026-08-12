@@ -101,4 +101,4 @@ Alle Grafiken liegen fertig unter `docs/store-grafiken/`:
   Kaufoptions-ID `premium-unlock`)
 - AdMob-DSGVO-Meldung: Option „Nicht einwilligen“ auf AN
 - Builds: immer „Generate Signed App Bundle → release“, versionCode bei jedem
-  Upload erhöhen (aktuell 4)
+  Upload erhöhen (aktuell 5)
