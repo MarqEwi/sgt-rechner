@@ -81,6 +81,28 @@ Wichtige Eigenschaften des Moduls:
   verschwindet.
 - Jeder Schritt geht zusätzlich in eine Diagnose-Liste (siehe unten).
 
+### Banner bündig an den unteren Rand
+
+Standardmäßig hängt das Plugin das Banner an das **erste Kind** von
+`android.R.id.content` – Capacitors `CoordinatorLayout` mit der WebView – und
+zieht ab Android 15 zusätzlich selbst die Sicherheitszone ab. Das Banner
+schwebt dadurch um die Höhe der Navigationsleiste über dem unteren Rand. Der
+Patch in `patches/` hängt es an `android.R.id.content` selbst (mit
+`FrameLayout.LayoutParams`) und entfernt den plugin-eigenen Insets-Listener.
+Den Listener niemals stattdessen an `mViewGroup` hängen – dort sitzt
+Capacitors eigener, und `setOnApplyWindowInsetsListener` überschreibt ihn.
+
+Damit liegt das Banner **über** dem Inhalt. Der Platz dafür kommt aus
+`--adbar-h`, gemessen ab der Fensterunterkante:
+
+```css
+body{padding-bottom:max(var(--adbar-h,0px), env(safe-area-inset-bottom,0px))}
+```
+
+`max`, nicht `+`: In `--adbar-h` steckt die Sicherheitszone schon drin.
+Dieselbe Reserve brauchen alle Fenster (`.modal-back`, Schublade) sowie alles,
+was fest am unteren Rand klebt.
+
 ## Kauf (Billing)
 
 ```js
